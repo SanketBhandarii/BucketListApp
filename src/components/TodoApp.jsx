@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./TodoApp.css";
 import { v4 as uuidv4 } from "uuid";
+import { todoItemsContext } from "./store/todoItemsStore";
 
-function TodoApp({ addList, list, deleteItem, markAsDone, selectAll }) {
+function TodoApp() {
   const todoItem = useRef();
-
+  const{addList, list, deleteItem, markAsDone, selectAll} = useContext(todoItemsContext);
   function addListUsingKeyPress(event) {
     if (event.key === "Enter" && todoItem.current.value !== "") {
       addList(todoItem.current.value, uuidv4());
@@ -12,11 +13,11 @@ function TodoApp({ addList, list, deleteItem, markAsDone, selectAll }) {
     }
   }
 
-  return (
+  return ( 
     <div className="container">
       <h2>Bucket List</h2>
       <div className="bucket-input">
-        <input
+        <input 
           type="text"
           placeholder="What's on your bucket list?"
           ref={todoItem}

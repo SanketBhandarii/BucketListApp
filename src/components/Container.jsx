@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { todoItemsContext } from "./store/todoItemsStore.jsx";
 import TodoApp from "./TodoApp.jsx";
 
 function Container() {
@@ -8,7 +9,7 @@ function Container() {
     setList((cli) => [...cli, { todoItem: item, itemId: id, done: false }]);
     // setList([...list, { todoItem: item, itemId: id, done: false }]);
   }
-  function deletetItem(id) {
+  function deleteItem(id) {
     let updatedList = list.filter((li) => li.itemId !== id);
     setList(updatedList);
   }
@@ -22,17 +23,17 @@ function Container() {
     let updatedList = list.map((li) => ({ ...li, done: true }));
     setList(updatedList);
   }
-
+  const allTodoEssentials = {
+    addList,
+    list,
+    deleteItem,
+    markAsDone,
+    selectAll,
+  };
   return (
-    <>
-      <TodoApp
-        addList={addList}
-        list={list}
-        deleteItem={deletetItem}
-        markAsDone={markAsDone}
-        selectAll={selectAll}
-      />
-    </>
+    <todoItemsContext.Provider value={allTodoEssentials}>
+      <TodoApp />
+    </todoItemsContext.Provider>
   );
 }
 
