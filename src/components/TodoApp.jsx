@@ -32,7 +32,7 @@ function TodoApp() {
         <ul>
           {list.map((li) => (
             <li key={li.itemId} className={li.done == true ? "done" : ""}>
-              {li.todoItem}
+               {li.todoItem}
               <div className="control-clicks">
                 <i
                   className="fa-solid fa-trash"
