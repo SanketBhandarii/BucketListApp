@@ -15,7 +15,7 @@ function TodoApp() {
 
   return ( 
     <div className="container">
-      <h2>Bucket Listt</h2>
+      <h2>Bucket List</h2>
       <div className="bucket-input">
         <input 
           type="text"
